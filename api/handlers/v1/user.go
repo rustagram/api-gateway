@@ -6,11 +6,12 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
+	"google.golang.org/protobuf/encoding/protojson"
+
 	_ "github.com/rustagram/api-gateway/api/handlers/models"
 	pb "github.com/rustagram/api-gateway/genproto"
 	l "github.com/rustagram/api-gateway/pkg/logger"
 	"github.com/rustagram/api-gateway/pkg/utils"
-	"google.golang.org/protobuf/encoding/protojson"
 )
 
 // CreateUser ...
