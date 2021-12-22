@@ -6,15 +6,24 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
-	"google.golang.org/protobuf/encoding/protojson"
-
+	_ "github.com/rustagram/api-gateway/api/handlers/models"
 	pb "github.com/rustagram/api-gateway/genproto"
 	l "github.com/rustagram/api-gateway/pkg/logger"
 	"github.com/rustagram/api-gateway/pkg/utils"
+	"google.golang.org/protobuf/encoding/protojson"
 )
 
-// CreateUser creates user
-// route /v1/users [post]
+// CreateUser ...
+// @Summary CreateUser
+// @Description This API for creating a new user
+// @Tags user
+// @Accept  json
+// @Produce  json
+// @Param User request body models.User true "userCreateRequest"
+// @Success 200 {object} models.User
+// @Failure 400 {object} models.StandardErrorModel
+// @Failure 500 {object} models.StandardErrorModel
+// @Router /v1/users/ [post]
 func (h *handlerV1) CreateUser(c *gin.Context) {
 	var (
 		body        pb.User
@@ -45,8 +54,17 @@ func (h *handlerV1) CreateUser(c *gin.Context) {
 	c.JSON(http.StatusCreated, response)
 }
 
-// GetUser gets user by id
-// route /v1/users/{id} [get]
+// GetUser ...
+// @Summary GetUser
+// @Description This API for getting user detail
+// @Tags user
+// @Accept  json
+// @Produce  json
+// @Param id path string true "ID"
+// @Success 200 {object} models.User
+// @Failure 400 {object} models.StandardErrorModel
+// @Failure 500 {object} models.StandardErrorModel
+// @Router /v1/users/{id} [get]
 func (h *handlerV1) GetUser(c *gin.Context) {
 	var jspbMarshal protojson.MarshalOptions
 	jspbMarshal.UseProtoNames = true
@@ -70,8 +88,18 @@ func (h *handlerV1) GetUser(c *gin.Context) {
 	c.JSON(http.StatusOK, response)
 }
 
-// ListUsers returns list of users
-// route /v1/users/ [get]
+// ListUsers ...
+// @Summary ListUsers
+// @Description This API for getting list of users
+// @Tags user
+// @Accept  json
+// @Produce  json
+// @Param page query string false "Page"
+// @Param limit query string false "Limit"
+// @Success 200 {object} models.ListUsers
+// @Failure 400 {object} models.StandardErrorModel
+// @Failure 500 {object} models.StandardErrorModel
+// @Router /v1/users [get]
 func (h *handlerV1) ListUsers(c *gin.Context) {
 	queryParams := c.Request.URL.Query()
 
@@ -106,8 +134,18 @@ func (h *handlerV1) ListUsers(c *gin.Context) {
 	c.JSON(http.StatusOK, response)
 }
 
-// UpdateUser updates user by id
-// route /v1/users/{id} [put]
+// UpdateUser ...
+// @Summary UpdateUser
+// @Description This API for updating user
+// @Tags user
+// @Accept  json
+// @Produce  json
+// @Param id path string true "ID"
+// @Param User request body models.UpdateUser true "userUpdateRequest"
+// @Success 200
+// @Failure 400 {object} models.StandardErrorModel
+// @Failure 500 {object} models.StandardErrorModel
+// @Router /v1/users/{id} [put]
 func (h *handlerV1) UpdateUser(c *gin.Context) {
 	var (
 		body        pb.User
@@ -140,8 +178,17 @@ func (h *handlerV1) UpdateUser(c *gin.Context) {
 	c.JSON(http.StatusOK, response)
 }
 
-// DeleteUser deletes user by id
-// route /v1/users/{id} [delete]
+// DeleteUser ...
+// @Summary DeleteUser
+// @Description This API for deleting user
+// @Tags user
+// @Accept  json
+// @Produce  json
+// @Param id path string true "ID"
+// @Success 200
+// @Failure 400 {object} models.StandardErrorModel
+// @Failure 500 {object} models.StandardErrorModel
+// @Router /v1/users/{id} [delete]
 func (h *handlerV1) DeleteUser(c *gin.Context) {
 	var jspbMarshal protojson.MarshalOptions
 	jspbMarshal.UseProtoNames = true
