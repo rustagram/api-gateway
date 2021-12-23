@@ -6,12 +6,11 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
-	"google.golang.org/protobuf/encoding/protojson"
-
 	_ "github.com/rustagram/api-gateway/api/handlers/models"
 	pb "github.com/rustagram/api-gateway/genproto"
 	l "github.com/rustagram/api-gateway/pkg/logger"
 	"github.com/rustagram/api-gateway/pkg/utils"
+	"google.golang.org/protobuf/encoding/protojson"
 )
 
 // CreateUser ...
@@ -20,7 +19,7 @@ import (
 // @Tags user
 // @Accept  json
 // @Produce  json
-// @Param User request body models.User true "userCreateRequest"
+// @Param User request body models.UpdateUser true "userCreateRequest"
 // @Success 200 {object} models.User
 // @Failure 400 {object} models.StandardErrorModel
 // @Failure 500 {object} models.StandardErrorModel

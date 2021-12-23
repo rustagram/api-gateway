@@ -74,7 +74,7 @@ paths:
         name: request
         required: true
         schema:
-          $ref: '#/definitions/models.User'
+          $ref: '#/definitions/models.UpdateUser'
       produces:
       - application/json
       responses:
