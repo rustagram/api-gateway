@@ -123,6 +123,7 @@ func (h *handlerV1) ListUsers(c *gin.Context) {
 		ctx, &pb.ListReq{
 			Limit: params.Limit,
 			Page:  params.Page,
+            Filters: params.Filters,
 		})
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
